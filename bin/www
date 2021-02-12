@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+require('dotenv').config()
 var app = require('../app');
 var debug = require('debug')('projecttwo:server');
 var http = require('http');
@@ -83,7 +83,7 @@ function onError(error) {
 
 function onListening() {
   console.log('Server is running')
-  
+
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
