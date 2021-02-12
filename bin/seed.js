@@ -7,8 +7,7 @@ const userArray = [{
     email: 'arslane@hotmail.com',
     password: '123456',
     aboutme: 'lorem',
-    picture: 'pictureurl',
-  
+    picture: 'pictureurl', // we don't need the last two properties
   },
   {
     name: 'Matt',
@@ -16,7 +15,7 @@ const userArray = [{
     password: 'abcdef',
     aboutme: 'lorem',
     picture: 'pictureurl',
-  
+
   }
 ];
 

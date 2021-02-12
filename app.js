@@ -6,8 +6,13 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const handlebars = require("hbs");
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const eventsRouter = require('./routes/events');
+const authRouter = require("./routes/auth");
 
 // DB CONNECTION
 mongoose
@@ -25,14 +30,28 @@ const MONGODB_URI = process.env.MONGODB_URI;
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  // cookie: { maxAge: 3600000 * 1 },	// 1 hour
+  resave: true,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 60 * 60 * 24 * 7 // Time to live - 7 days (14 days - Default)
+  })
+}));
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/events", eventsRouter);
+app.use("/auth", authRouter);
 
 //ERROR HANDLERS
 // catch 404 and forward to error handler
