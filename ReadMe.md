@@ -54,7 +54,7 @@ User model
   password: String,
   aboutme: String,
   picture: String,
-  createEvent:[{  type: mongoose.Schema.Types.ObjectId  }]
+  createEvent:[{  type: mongoose.Schema.Types.ObjectId  }],
   joinEvent:[{ type: mongoose.Schema.Types.ObjectId  }]
 }
 

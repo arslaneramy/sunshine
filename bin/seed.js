@@ -1,27 +1,42 @@
 const mongoose = require("mongoose");
 const User = require("./../models/user-model")
 require('dotenv').config();
-const User = [
-    {name: "Shakira", occupation: "Singer", catchPhrase:"Waka Waka"},
-    {name:"Julian Abasolo", occupation:"TA", catchPhrase:"Fork this repo"},
-    {name:"Mariano Rajoy", occupation:"Politician", catchPhrase:"Fin de la cita"}
+
+const userArray = [{
+    name: 'Arslane',
+    email: 'arslane@hotmail.com',
+    password: '123456',
+    aboutme: 'lorem',
+    picture: 'pictureurl',
+  
+  },
+  {
+    name: 'Matt',
+    email: 'mat@hotmail.com',
+    password: 'abcdef',
+    aboutme: 'lorem',
+    picture: 'pictureurl',
+  
+  }
 ];
 
 mongoose.connect(
-    `mongodb://localhost:27017/celebrities`,
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    `${process.env.MONGODB_URI}`, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }
   )
-    .then((x) => {
+  .then((x) => {
     console.log('Connected to the DB');
     const pr = x.connection.dropDatabase();
     return pr;
   })
   .then(() => {
-    const pr = Celebrity.create(celebrityArr);
+    const pr = User.create(userArray);
     return pr;
   })
-    .then((celebrityInserted) => {
-      console.log(`Created ${celebrityInserted}`);
-      mongoose.connection.close();
+  .then((userInserted) => {
+    console.log(`Created ${userInserted}`);
+    mongoose.connection.close();
   })
-  .catch( (err) => console.log('Error connection to the DB', err));
+  .catch((err) => console.log('Error connection to the DB', err));
