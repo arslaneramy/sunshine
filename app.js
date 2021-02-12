@@ -3,12 +3,22 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 const handlebars = require('hbs');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-const mongoose = require('mongoose');
+// DB CONNECTION
+mongoose.connect(
+  `mongodb://localhost:27017/${process.env.MONGODB_URI}`,
+  { useNewUrlParser: true, useUnifiedTopology: true }
+)
+.then( () => console.log('Connected to the DB'))
+.catch( (err) => console.log('Error connection to the DB', err));
+
+
+
 const app = express();
 const MONGODB_URI = process.env.MONGODB_URI
 
