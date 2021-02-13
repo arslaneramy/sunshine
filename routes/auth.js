@@ -1,6 +1,7 @@
 const express = require('express');
 const authRouter = express.Router();
 const User = require('./../models/user-model');
+// why delete line 3 ?
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
