@@ -15,6 +15,17 @@ const eventsRouter = require('./routes/events');
 const authRouter = require("./routes/auth");
 const siteRouter = require("./routes/site")
 
+const { isLoggedIn } = require('./utils/middleware');
+
+// function isLoggedIn(req, res, next) {
+//   if (req.session.currentUser){
+//     next();
+//   }
+//   else {
+//     res.redirect("/auth/login");
+//   }
+// }
+
 // DB CONNECTION
 mongoose
   .connect(`${process.env.MONGODB_URI}`, {
@@ -53,13 +64,22 @@ app.use(session({
 app.use("/", indexRouter);
 
 
-
-
-
-
 app.use("/users", usersRouter);
 // app.use("/events", eventsRouter);          IT BLOCKS THE SERVER SO WHEN YOU DO UNCOMMENT THIS PLEASE CHANGE EVENTS ROUTER TOO
 app.use("/auth", authRouter);
+
+// helper middleware (commented)
+// function isLoggedIn (req, res, next) {
+//   if (req.session.currentUser){
+//     next();
+//   } else {
+//     res.redirect('/auth/login');
+//   }
+
+// }
+
+
+
 app.use("/", siteRouter);
 
 //ERROR HANDLERS

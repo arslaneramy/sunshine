@@ -136,6 +136,8 @@ authRouter.post('/login', (req, res, next) => {
         .catch((err) => next(err));
 })
 
+// logout 
+
 authRouter.get('/logout', (req, res, next) => {
     req.session.destroy(function (err) {
         if (err) {
