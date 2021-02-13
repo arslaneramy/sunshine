@@ -81,6 +81,8 @@ authRouter.post("/signup", (req, res, next) => {
 
 });
 
+//render login form
+
 authRouter.get('/login', (req, res, next) => {
     res.render('auth-views/login-form');
 });

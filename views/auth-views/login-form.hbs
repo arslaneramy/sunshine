@@ -1,1 +1,18 @@
-getform
+<form action='/auth/login' method='POST'>
+
+<h2>Login</h2>
+
+  <label for=''>Email</label>
+  <input type='text' name='Email'>
+
+  <label for=''>Password</label>
+  <input type='password' name='Password'>
+
+  <button type='submit'>Login</button>
+</form>
+
+{{#if errorMessage}}
+<div class="error-message">
+{{ errorMessage }}
+</div>
+{{/if}}
