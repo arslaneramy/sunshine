@@ -1,10 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const usersRouter = express.Router();
 const User = require("../models/user-model");
 
 
 /* GET users listing. */
-router.get('/user/:id', function(req, res, next) {
+usersRouter.get('/user/:id', function(req, res, next) {
   const userId = req.params.id;
   User.findById(userId)
   .then(
@@ -22,4 +22,4 @@ router.get('/user/:id', function(req, res, next) {
 
 
 
-module.exports = router;
+module.exports = usersRouter;

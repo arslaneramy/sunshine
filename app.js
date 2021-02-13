@@ -13,6 +13,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const eventsRouter = require('./routes/events');
 const authRouter = require("./routes/auth");
+const siteRouter = require("./routes/site")
 
 // DB CONNECTION
 mongoose
@@ -59,6 +60,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 // app.use("/events", eventsRouter);          IT BLOCKS THE SERVER SO WHEN YOU DO UNCOMMENT THIS PLEASE CHANGE EVENTS ROUTER TOO
 app.use("/auth", authRouter);
+app.use("/", siteRouter);
 
 //ERROR HANDLERS
 // catch 404 and forward to error handler
