@@ -24,24 +24,24 @@ Search platform for events in Barcelona, made for non-locals who just arrived in
 
 ## Server Routes (Back-end):
 
-| **Method** | **Route**                            | **Description**                                                          | Request - Body                            |
-| ---------- | ------------------------------------ | ------------------------------------------------------------------------ | ----------------------------------------- |
-| `GET`      | `/`                                  | Main page route. Renders home `index` view.                              |                                           |
-| `GET`      | `/login`                             | Renders `login` form view.                                               |                                           |
-| `POST`     | `/login`                             | Sends Login form data to the server.                                     | { email, password }                       |
-| `GET`      | `/signup`                            | Renders `signup` form view.                                              |                                           |
-| `POST`     | `/signup`                            | Sends Sign Up info to the server and creates user in the DB.             | { email, name, password }                 |
-| GET        | /signout                             | renders home index view                                                  |                                           |
-| GET        | /profile/:id //Julian                | Private route. Renders                                                   |                                           |
-| `GET`      | `/profile/:id/edit-profile`// Julian | Private route. Renders `edit-profile` form view.                         |                                           |
-| `PUT`      | `/profile/:id/edit-profile`// Julian | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, name, image, aboutme } |
-| GET        | /events/create                       | Renders creation form                                                    |                                           |
-| POST       | /events/create                       | Send info to the server and creates event in the db                      |                                           |
-| GET        | /events/:id/edit                     | Renders creation form                                                    |                                           |
-| POST       | /events/:id/edit                     | Private route. send info to the server and update event                  |                                           |
-| POST       | /events/:id/delete                   | Private route. delete event from the database                            |                                           |
-| `GET`      | /events                              | Renders events-list` view.                                               |                                           |
-| `GET`      | `/events/:id`                        | Renders events-details` view for the particular event.                   |                                           |
+| **Method** | **Route**                   | **Description**                                                          | Request - Body                            |
+| ---------- | --------------------------- | ------------------------------------------------------------------------ | ----------------------------------------- |
+| `GET`      | `/`                         | Main page route. Renders home `index` view.                              |                                           |
+| `GET`      | `/login`                    | Renders `login` form view.                                               |                                           |
+| `POST`     | `/login`                    | Sends Login form data to the server.                                     | { email, password }                       |
+| `GET`      | `/signup`                   | Renders `signup` form view.                                              |                                           |
+| `POST`     | `/signup`                   | Sends Sign Up info to the server and creates user in the DB.             | { email, name, password }                 |
+| GET        | /signout                    | renders home index view                                                  |                                           |
+| GET        | /profile/:id                | Private route. Renders                                                   |                                           |
+| `GET`      | `/profile/edit-profile/:id` | Private route. Renders `edit-profile` form view.                         |                                           |
+| `PUT`      | `/profile/edit-profile/:id` | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, name, image, aboutme } |
+| GET        | /events/create              | Renders creation form                                                    |                                           |
+| POST       | /events/create              | Send info to the server and creates event in the db                      |                                           |
+| GET        | /events/edit/:id            | Renders creation form                                                    |                                           |
+| POST       | /events/edit/:id            | Private route. send info to the server and update event                  |                                           |
+| POST       | /events/delete/:id          | Private route. delete event from the database                            |                                           |
+| `GET`      | /events                     | Renders events-list` view.                                               |                                           |
+| `GET`      | `/events/:id`               | Renders events-details` view for the particular event.                   |                                           |
 
 ## Models
 
