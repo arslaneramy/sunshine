@@ -1,3 +1,5 @@
+//'use strict';
+
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -8,7 +10,6 @@ const handlebars = require("hbs");
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const eventsRouter = require('./routes/events');
@@ -50,10 +51,6 @@ app.use(session({
 
 // MAIN ROUTE
 app.use("/", indexRouter);
-
-
-
-
 
 
 app.use("/users", usersRouter);
