@@ -142,7 +142,8 @@ authRouter.get('/logout', (req, res, next) => {
     req.session.destroy(function (err) {
         if (err) {
             next(err)
-        } else {
+        } 
+        else {
             res.redirect('/auth/login')
         }
     })
