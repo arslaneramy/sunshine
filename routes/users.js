@@ -10,13 +10,8 @@ usersRouter.get('/user/:id', function(req, res, next) {
   .then(
     userRes => {
       res.render( "/user", {userRes} );
-      
     }
-    
   )
-    
-  
-  
 });
 
 
