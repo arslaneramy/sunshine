@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const authRouter = express.Router();
 const User = require('./../models/user-model');
 
 const bcrypt = require("bcrypt");
@@ -10,6 +10,8 @@ authRouter.get("/signup", (req, res, next) => {
 });
 
 authRouter.post("/signup", (req, res, next) => {
+    // check if name , pw and email are provided
+
     console.log('req.body', req.body)
 
     const {
@@ -19,6 +21,7 @@ authRouter.post("/signup", (req, res, next) => {
     } = req.body;
 
     if (name === "" || password === "" || email === "") {
+// if name, pw or email are not provided 
 
         res.render(
             "auth-views/signup-form", {
@@ -29,6 +32,8 @@ authRouter.post("/signup", (req, res, next) => {
         return;
     }
 
+
+// check if name is taken
     User.findOne({
             name
         })

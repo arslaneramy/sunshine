@@ -48,9 +48,16 @@ app.use(session({
   })
 }));
 
+// MAIN ROUTE
 app.use("/", indexRouter);
+
+
+
+
+
+
 app.use("/users", usersRouter);
-app.use("/events", eventsRouter);
+// app.use("/events", eventsRouter);          IT BLOCKS THE SERVER SO WHEN YOU DO UNCOMMENT THIS PLEASE CHANGE EVENTS ROUTER TOO
 app.use("/auth", authRouter);
 
 //ERROR HANDLERS
