@@ -1,20 +1,18 @@
 const express = require('express');
-const router = new express.Router(); //new ??
+const usersRouter = express.Router();
 const User = require("../models/user-model");
 const uploader = require("./../file-uploader");//require to upload the files
 
 
 /* GET users listing. */
-router.get('/user/:id', function(req, res, next) {
+usersRouter.get('/user/:id', function(req, res, next) {
   const userId = req.params.id;
   User.findById(userId)
   .then(
     userRes => {
       res.render( "/user", {userRes} );
-      
-    }  
+    }
   )
-  
 });
 
 // User.findById(userId) //check userID
@@ -91,4 +89,4 @@ router.post("/edit", uploader.single("photo"), (req, res, next) =>{
 
 
 
-module.exports = router;
+module.exports = usersRouter;
