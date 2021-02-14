@@ -15,7 +15,6 @@ const userArray = [{
     password: 'abcdef',
     aboutme: 'lorem',
     picture: 'pictureurl',
-
   }
 ];
 

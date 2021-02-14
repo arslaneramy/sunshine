@@ -9,8 +9,7 @@ router.get('/user/:id', function(req, res, next) {
   User.findById(userId)
   .then(
     userRes => {
-      res.render( "/user", {userRes} );
-      
+      res.render("/user", {userRes});
     }
     
   )

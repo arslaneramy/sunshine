@@ -8,7 +8,7 @@ const eventSchema = new Schema({
     location: String,
     picture: String,
     host: [{
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
     }],
     numberParticipants: number
 });
