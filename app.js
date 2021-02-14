@@ -1,9 +1,13 @@
+require("dotenv").config();
+
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+
+
 const handlebars = require("hbs");
 
 const session = require('express-session');
@@ -16,6 +20,7 @@ const authRouter = require("./routes/auth");
 const siteRouter = require("./routes/site")
 
 const { isLoggedIn } = require('./utils/middleware');
+const app = express();
 
 // function isLoggedIn(req, res, next) {
 //   if (req.session.currentUser){
@@ -33,10 +38,10 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("Connected to the DB"))
-  .catch((err) => console.log("Error connection to the DB", err));
+  .catch((err) => console.log(err));
 
-const app = express();
-const MONGODB_URI = process.env.MONGODB_URI;
+
+// const MONGODB_URI = process.env.MONGODB_URI;
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -90,6 +95,7 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
+  console.log('ERROR', err);
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
