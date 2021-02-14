@@ -12,7 +12,6 @@ authRouter.get("/signup", async (req, res, next) => {
 
     authRouter.post("/signup", async (req, res, next) => {
     try {
-
         const {
             email,
             name,
@@ -23,9 +22,6 @@ authRouter.get("/signup", async (req, res, next) => {
         throw new Error("Please enter name, email and password");
         }
     
-
-    
-
 
     const user = await User.findOne({
             name
