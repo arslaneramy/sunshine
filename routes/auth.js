@@ -1,7 +1,6 @@
 const express = require('express');
 const authRouter = express.Router();
 const User = require('./../models/user-model');
-// why delete line 3 ?
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -10,8 +9,7 @@ authRouter.get("/signup", async (req, res, next) => {
     res.render("auth-views/signup-form");
 });
 
-// authRouter.post("/signup", (req, res, next) => {
-    // check if name , pw and email are provided
+
     authRouter.post("/signup", async (req, res, next) => {
     try {
 
@@ -28,7 +26,7 @@ authRouter.get("/signup", async (req, res, next) => {
 
     
 
-// check if name is taken
+
     const user = await User.findOne({
             name
         })
@@ -38,19 +36,18 @@ authRouter.get("/signup", async (req, res, next) => {
              throw new Error("There was an error, try again");
             }
 
-            // > if name is available, hash the password
+         
             const salt = await bcrypt.genSaltSync(saltRounds);
             const hashedPassword = await bcrypt.hash(password, salt);
 
-            // > Create new user in DB
-            // User.create( { name: name, password: hashedPassword } )
+
             const createdUser = await User.create({
                     email,
                     name,
                     password: hashedPassword
                 })
                 
-                    // We also create the session for the user right after signup (singup + login in the same step!)
+                    
                     
                     res.redirect('/');
                 }
@@ -64,7 +61,6 @@ authRouter.get("/signup", async (req, res, next) => {
             });
 
 
-//render login form
 
 authRouter.get('/login', (req, res, next) => {
     res.render('auth-views/login-form');

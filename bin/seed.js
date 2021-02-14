@@ -2,22 +2,22 @@
 // const User = require("./../models/user-model")
 // require('dotenv').config();
 
-// const userArray = [{
-//   //   name: 'Arslane',
-//   //   email: 'arslane@hotmail.com',
-//   //   password: '123456',
-//   //   aboutme: 'lorem',
-//   //   picture: 'pictureurl', // we don't need the last two properties
-//   // },
-//   // {
-//   //   name: 'Matt',
-//   //   email: 'mat@hotmail.com',
-//   //   password: 'abcdef',
-//   //   aboutme: 'lorem',
-//   //   picture: 'pictureurl',
+// // const userArray = [{
+// //     name: 'Arslane',
+// //     email: 'arslane@hotmail.com',
+// //     password: '123456',
+// //     aboutme: 'lorem',
+// //     picture: 'pictureurl', // we don't need the last two properties
+// //   },
+// //   {
+// //     name: 'Matt',
+// //     email: 'mat@hotmail.com',
+// //     password: 'abcdef',
+// //     aboutme: 'lorem',
+// //     picture: 'pictureurl',
 
-//   }
-// ];
+// //   }
+// // ];
 
 // mongoose.connect(
 //     `${process.env.MONGODB_URI}`, {
