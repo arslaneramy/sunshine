@@ -17,7 +17,7 @@ usersRouter.get('/user/:id', function(req, res, next) {
 
 // User.findById(userId) //check userID
 //   .populate()
-// router.get("/profile", (req, res, next) =>{
+// usersRouter.get("/profile", (req, res, next) =>{
 //   const userId = req.session.user;
 //   let = userData;
 
@@ -30,7 +30,7 @@ usersRouter.get('/user/:id', function(req, res, next) {
 // })
 
 
-router.get("/profile", (req, res, next) => {
+usersRouter.get("/profile", (req, res, next) => {
   const userId = req.session.user;
   let
 })
@@ -38,7 +38,7 @@ router.get("/profile", (req, res, next) => {
 
 //upload profile picture
           //check avatar-upload
-router.post("/avatar-upload", uploader.single("photo"), (req, res, next) =>{
+usersRouter.post("/avatar-upload", uploader.single("photo"), (req, res, next) =>{
   const photoUrl = req.file.url;
 
   User.findByIdAndUpdate(req.session.user, { photoUrl })
@@ -51,7 +51,7 @@ router.post("/avatar-upload", uploader.single("photo"), (req, res, next) =>{
 });
 
 //check edit route
-router.get('/edit', (req, res, next) => {
+usersRouter.get('/edit', (req, res, next) => {
   const id = req.session.user;
   let userData;
 
@@ -66,7 +66,7 @@ router.get('/edit', (req, res, next) => {
     });
 });
 
-router.post("/edit", uploader.single("photo"), (req, res, next) =>{
+usersRouter.post("/edit", uploader.single("photo"), (req, res, next) =>{
   const id = req.session.user;
   const user = {
     name: req.body.name,
