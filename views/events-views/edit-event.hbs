@@ -1,0 +1,27 @@
+
+<form action='/events/edit/{{this._id}}' method='POST'>
+
+  <label for=''>Name</label>
+  <input type='text' value="{{this.name}}" name='name'>
+
+  <label for=''>Description</label>
+  <input type='text' value="{{this.description}}" name='description'>
+
+  <label for=''>Location</label>
+  <input type='text' value="{{this.location}}" name='location'>
+
+  {{!--
+
+  <button></button> to click and upload the picture 
+
+  <label for=''>Picture</label>
+  <input type='text' name='picture'>
+
+  --}}
+
+{{!-- no need to fetch the user email, can hardcoded it --}}
+  <label for=''>Contact email</label>
+  <input type='text' value="{{this.email}}" name='email'>
+
+  <button type='submit'>Submit</button>
+</form>
