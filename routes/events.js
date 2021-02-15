@@ -1,7 +1,7 @@
-// const express = require('express');
-// const router = express.Router();
-// const Event = require('./../models/event-model');
-// const {isLoggedIn} = require('./../middleware/auth');
+const express = require('express');
+const router = express.Router();
+const Event = require('./../models/event-model');
+const {isLoggedIn} = require('./../utils/middleware');
 
 // router.get("/", (req, res, next) => {
 //     Event.find()

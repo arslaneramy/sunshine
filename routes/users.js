@@ -5,15 +5,22 @@ const uploader = require("./../file-uploader");//require to upload the files
 
 
 /* GET users listing. */
-// usersRouter.get('/profile', function(req, res, next) {
-//   const userId = req.params.id;
-//   User.findById(userId)
-//   .then(
-//     userRes => {
-//       res.render( "/profile", {userRes} );
-//     }
-//   )
-// });
+usersRouter.get('/profile', (req, res, next) => {
+  const userId = req.session.user;
+  let userData;
+
+  User.findById(userId)
+  .then(
+    user => {
+      userData = user
+      res.render( "profile/user", {user: userData} );// <-- call by name
+    }
+  )
+  .catch(err => {
+    next(err);
+  })
+});
+
 
 // User.findById(userId) //check userID
 //   .populate()
@@ -28,6 +35,7 @@ const uploader = require("./../file-uploader");//require to upload the files
 //       return ;
 //     })
 // })
+
 
 
 usersRouter.get("/profile", (req, res, next) => {
