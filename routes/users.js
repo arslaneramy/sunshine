@@ -37,6 +37,7 @@ usersRouter.get('/profile', (req, res, next) => {
 // })
 
 
+
 usersRouter.get("/profile", (req, res, next) => {
   const userId = req.session.user;
   let
