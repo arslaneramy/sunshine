@@ -5,15 +5,22 @@ const uploader = require("./../file-uploader");//require to upload the files
 
 
 /* GET users listing. */
-usersRouter.get('/user/:id', function(req, res, next) {
-  const userId = req.params.id;
+usersRouter.get('/profile', (req, res, next) => {
+  const userId = req.session.user;
+  let userData;
+
   User.findById(userId)
   .then(
-    userRes => {
-      res.render( "/user", {userRes} );
+    user => {
+      userData = user
+      res.render( "profile/user", {user: userData} );// <-- call by name
     }
   )
+  .catch(err => {
+    next(err);
+  })
 });
+
 
 // User.findById(userId) //check userID
 //   .populate()
