@@ -68,7 +68,7 @@ app.use(session({
 app.use("/", indexRouter);
 
 
-app.use("/users", usersRouter);
+app.use("/profile", usersRouter);
 // app.use("/events", eventsRouter);          IT BLOCKS THE SERVER SO WHEN YOU DO UNCOMMENT THIS PLEASE CHANGE EVENTS ROUTER TOO
 app.use("/auth", authRouter);
 
@@ -88,9 +88,9 @@ app.use("/", siteRouter);
 
 //ERROR HANDLERS
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
+// app.use(function (req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function (err, req, res, next) {
