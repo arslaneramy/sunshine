@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const {
-    isLoggedIn
-} = require("./../utils/middleware");
-const User = require('./../models/user-model');
 const Event = require('./../models/event-model');
+const {isLoggedIn} = require('./../middleware/auth');
 
 router.get("/", (req, res, next) => {
     Event.find()
@@ -12,7 +9,8 @@ router.get("/", (req, res, next) => {
         res.render("events-views/index", {allEvents});
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
+        res.redirect('/events');
       });
   });
 
@@ -77,3 +75,5 @@ router.post("/delete/:id", (req, res, next) => {
     .then(() => res.redirect('/events'))
     .catch((err) => console.log(err));
 })
+
+module.exports = router;

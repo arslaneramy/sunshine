@@ -15,17 +15,26 @@ const userArray = [{
     password: 'abcdef',
     aboutme: 'lorem',
     picture: 'pictureurl',
-  }
+  }/*,
+  {
+    name: 'Isabel',
+    email: 'isabel@hotmail.com',
+    password: '654321',
+    aboutme: 'lorem',
+    picture: 'pictureurl', // we don't need the last two properties
+  }*/
 ];
 
 mongoose.connect(
-    `${process.env.MONGODB_URI}`, {
+  /*`${process.env.MONGODB_URI}`, {*/
+  `mongodb://localhost:27017/Sunshine`, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     }
   )
   .then((x) => {
-    console.log('Connected to the DB');
+    console.log('hola');
+    console.log('Connected to the DB, yei');
     const pr = x.connection.dropDatabase();
     return pr;
   })

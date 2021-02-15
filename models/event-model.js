@@ -10,7 +10,7 @@ const eventSchema = new Schema({
     host: [{
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
     }],
-    numberParticipants: number
+    numberParticipants: Number
 });
 
 const Event = mongoose.model("Event", eventSchema);

@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const authRouter = express.Router();
 const User = require('./../models/user-model');
 
 const bcrypt = require("bcrypt");
@@ -11,21 +11,14 @@ authRouter.get("/signup", (req, res, next) => {
 
 authRouter.post("/signup", (req, res, next) => {
     console.log('req.body', req.body)
+    const {email, name, password } = req.body;
 
-    const {
-        password,
-        name,
-        email
-    } = req.body;
-
-    if (name === "" || password === "" || email === "") {
-
+    if (email === "" || name === "" || password === "" ) {
         res.render(
             "auth-views/signup-form", {
                 errorMessage: "Please enter a username, password and email"
             }
         );
-
         return;
     }
 
@@ -33,28 +26,22 @@ authRouter.post("/signup", (req, res, next) => {
             name
         })
         .then((user) => {
-
             if (user !== null) {
                 res.render('auth-views/signup-form', {
                     errorMessage: "There was an error, try again"
                 })
-
                 return;
             }
 
-            // > if name is available, hash the password
             const salt = bcrypt.genSaltSync(saltRounds);
             const hashedPassword = bcrypt.hashSync(password, salt);
 
-            // > Create new user in DB
-            // User.create( { name: name, password: hashedPassword } )
             User.create({
                     name,
                     email,
                     password: hashedPassword
                 })
                 .then((createdUser) => {
-                    // We also create the session for the user right after signup (singup + login in the same step!)
                     req.session.currentUser = user; // Triggers creation of the session and cookie
                     res.redirect('/');
                 })
@@ -64,13 +51,6 @@ authRouter.post("/signup", (req, res, next) => {
                         errorMessage: 'There was an error, please try again!'
                     })
                 });
-
-
-
-
-            // > Redirect the user
-
-
         })
         .catch((err) => next(err));
 
@@ -92,7 +72,6 @@ authRouter.post('/login', (req, res, next) => {
                 errorMessage: "Please enter email and password"
             }
         );
-
         return;
     }
 
@@ -106,12 +85,10 @@ authRouter.post('/login', (req, res, next) => {
                         errorMessage: "Indicate email and password"
                     }
                 );
-
                 return;
             }
 
             const passwordCorrect = bcrypt.compareSync(password, user.password);
-
 
             if (passwordCorrect) {
                 req.session.currentUser = user; // Triggers creation of the session and cookie
