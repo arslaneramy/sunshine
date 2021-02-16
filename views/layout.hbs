@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/public/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+
+
   </head>
-  {{!-- nav bar --}}
-  <nav>
-    <ul>
-      <li> <a href=""> Log In </a></li>
-      <li> <a href=""> Sign In </a></li>
-      <li> <a href=""> Events </a></li>
-    </ul>
-  </nav>
-  {{!-- header --}}
-  <header>
-    <h1><img class="imgLayout" src="images/sunshineWllp.jpg" alt=""> Sunshine </h1>
-  </header>
   <body>
-    {{{body}}}
+    <div class="menu">
+      <nav>
+        <img id="logo" src="/images/logo.png" alt="">
+        {{#if user}}
+          <a href="/profile/user"> My Profile </a>
+          <a href="/events-views/list"> Events</a>
+          <a href="/event/create"> Create Event </a>
+          <form action="/auth/logout" method="POST">
+            <button> Sign Out </button>
+          </form>  
+        {{else}}
+          <a href="/events-views/list"> See Events </a>
+          <a href="/auth/login"> Sign In </a>
+          {{!-- fix signin --}}
+          <a href="/auth/signin"> Sign Up </a> 
+        {{/if}}          
+      </nav>
+    </div>
+    <div class="main">
+      {{{body}}}
+    </div>
+    <footer>
+      Sunshine © 2021 - Developed by Arslane, Isabel and Matias ☺
+    </footer>
+
+   {{!-- should go here any script? --}}
   </body>
 </html>

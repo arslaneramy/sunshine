@@ -1,14 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Reggae+One&display=swap");
+
+* {
+  font-family: "Reggae One", cursive;
+  background-color: transparent;
+  color: white;
+  text-decoration: nones;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("/images/wallp.jpg");
+  background-size: cover;
+  text-align: center;
+}
+
+nav {
+  margin-right: 80px;
+  font-size: 40px;
+  display: fixed;
+  flex-direction: row;
 }
 
 a {
-  color: #00b7ff;
+  list-style: none;
+  padding: 0 60px;
+}
+
+a :hover {
+  color: rgb(221, 155, 31);
+  opacity: 0.8;
+  text-shadow: 3px 3px black;
+}
+
+#logo {
+  width: 10%;
+  height: auto;
 }
 
 .imgLayout {
   background-size: cover;
   width: 350;
   height: 400;
+}
+
+footer {
 }
