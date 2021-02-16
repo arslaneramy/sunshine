@@ -59,7 +59,7 @@ usersRouter.post("/avatar-upload", uploader.single("photo"), (req, res, next) =>
 });
 
 //check edit route
-usersRouter.get('/edit', (req, res, next) => {
+usersRouter.get('/profile/edit', (req, res, next) => {
   const id = req.session.user;
   let userData;
 
@@ -67,7 +67,7 @@ usersRouter.get('/edit', (req, res, next) => {
     .then(document => {
       userData = document;
       console.log(userData);
-      res.render('user/edit', { userData });
+      res.render('profile/edit', { userData });
     })
     .catch(err =>{
       next(err);
@@ -87,7 +87,7 @@ usersRouter.post("/edit", uploader.single("photo"), (req, res, next) =>{
 
   User.findByIdAndUpdate(id, user)
     .then(() => {
-      res.redirect("profile");
+      res.redirect("/profile");
     })
     .catch(err => {
       next(err);
