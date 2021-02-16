@@ -70,7 +70,7 @@ app.use("/", indexRouter);
 // app.use("/profile", )
 
 app.use("/profile", usersRouter);
-// app.use("/events", eventsRouter);          IT BLOCKS THE SERVER SO WHEN YOU DO UNCOMMENT THIS PLEASE CHANGE EVENTS ROUTER TOO
+app.use("/events", eventsRouter);   
 app.use("/auth", authRouter);
 
 // helper middleware (commented)
