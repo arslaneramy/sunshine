@@ -1,0 +1,115 @@
+<div class="create-event">
+  <h1>Create a New Event</h1>
+
+  <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <label for="create-event">Event Title</label>
+    <input required id="create-event" type="text" name="title" placeholder="It’s a Doggy Dog World">
+
+    <label for="event-description">Event Description</label>
+    <textarea required id="event-description" name="description" placeholder="Join fellow dog-lovers to strut your mutts down the Lisbon promenade for the parade and join in the fun of the dog costume contest"></textarea>
+
+    <label for="event-start">Enter the Start Date and Time of your Event</label>
+    <input required id="event-start" type="datetime-local" name="date" placeholder="Event Start Date and Time">
+
+    <label for="event-end">Enter the End Date and Time of your Event</label>
+    <input required id="event-end" type="datetime-local" name="endDate" placeholder="Event End Date and Time">
+
+    <label for="photo-input">Add a Photo</label>
+    <input required id="photo-input" type="file" name="photo" >
+
+    <label for="event-address">Enter the Address of your Event</label>
+    <input required id="event-address" type="text" name="address" placeholder="Avenida Ribeira das Naus, Lisboa">
+
+    <label for="map-container">Mark your spot on the map</label>
+    <div id="map-container" ></div>
+
+    <!--label for="select-latitude">Latitude</label-->
+    <input required hidden id="select-latitude" type="text" name="latitude" placeholder="Latitude">
+
+    <!--label for="select-longitude">Longitude</label-->
+    <input required hidden id="select-longitude" type="text" name="longitude" placeholder="Longitude">
+
+    <button>Create Event</button>
+  </form>
+</div>
+<script>
+ 
+  //console.log($endDateTime.value)
+  function validateForm(){
+    let dateTimeNow = new Date();
+    let $startDateTime = document.getElementById('event-start');
+    let $endDateTime = document.getElementById('event-end'); 
+    let $photo = document.getElementById('photo-input'); 
+    const startDateTime = new Date($startDateTime.value);
+    const endDateTime = new Date($endDateTime.value);
+    if (startDateTime < dateTimeNow) {
+      alert('Event Start cannot be in the past');
+      return false;
+    } else if (startDateTime >= endDateTime) {
+        alert('Event End must be after Event Start');
+        return false;
+      } else {
+          return true;
+        }
+  };
+   /*
+  $startDateTime.addEventListener('change', event => {
+   
+     
+  console.log($startDateTime.value)
+    //console.log(dateTimeNow)
+    $startDateTime.setAttribute("min", dateTimeNow);
+    
+    console.log('start time event: ', $startDateTime);
+    
+    if ($startDateTime.validity.rangeUnderflow) {
+      $startDateTime.setCustomValidity("Start Date Cannot be in the past..");
+    } else {
+      $startDateTime.setCustomValidity("");
+    }
+  });
+  $endDateTime.addEventListener('change', event => {
+    const dateTimeNow = new Date();
+    console.log(dateTimeNow)
+    $endDateTime = new Date(event.srcElement.value).getTime();
+    console.log('end time event: ', $endDateTime);
+    if ($endDateTime <= dateTimeNow || $endDateTime <= $startDateTime) {
+      alert('end time must be in the future and cannot be smaller than the start time');
+    } 
+  });
+  */
+  
+  
+  let map;
+  let marker;
+  const $inputLatitude = document.getElementById('select-latitude');
+  const $inputLongitude = document.getElementById('select-longitude'); 
+  function initMap() {
+    const $mapContainer = document.getElementById('map-container');
+    map = new window.google.maps.Map($mapContainer, {
+      center: {lat: 38.74, lng: -9.14 },
+      zoom: 10
+    });
+    map.addListener('click', event => {
+      const latitude = event.latLng.lat();
+      const longitude = event.latLng.lng();
+      $inputLatitude.value = Number(latitude);
+      $inputLongitude.value = Number(longitude);
+      if(marker) { marker.setMap(null); }
+      addMarker( {lat: latitude, lng: longitude} , 'purple');
+    });
+  }
+  function addMarker(latLng, color) {
+    let url = "http://maps.google.com/mapfiles/ms/icons/";
+    url += color + "-dot.png";
+    marker = new google.maps.Marker({
+      map: map,
+      position: latLng,
+      icon: {
+        url: url
+      }
+    });
+  }
+</script>
+
+{{> mapscript}}
