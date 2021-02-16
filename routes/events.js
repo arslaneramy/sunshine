@@ -1,12 +1,12 @@
 const express = require('express');
-const router = express.Router();
+const eventRouter = express.Router();
 const User = require('./../models/user-model');
 const Event = require('./../models/event-model');
 const {
     isLoggedIn
 } = require('./../utils/middleware');
 
-router.get("/", (req, res, next) => {
+eventRouter.get("/", (req, res, next) => {
     Event.find()
         .then((allEvents) => {
             res.render("events-views/index", {
@@ -20,9 +20,9 @@ router.get("/", (req, res, next) => {
 });
 
 // we neeed a event view, there will be a button to create an event, and when clicked, we would go to the view whith the form to create the new event
-router.get("/create", isLoggedIn, (req, res, next) => res.render('events-views/new-event'));
+eventRouter.get("/create", isLoggedIn, (req, res, next) => res.render('events-views/new-event'));
 
-router.post("/create", (req, res, next) => { // new
+eventRouter.post("/create", (req, res, next) => { // new
     const {
         name,
         description,
@@ -47,12 +47,12 @@ router.post("/create", (req, res, next) => { // new
                         createEvent: event._id
                     }
                 })
-                .then(() => res.redirect(`events-views/details-event/${event._id}`))
+                .then(() => res.redirect(`/events-views/details-event/${event._id}`))
 
         }).catch((error) => console.log(error));
 });
 
-router.get("/edit/:id", (req, res, next) => {
+eventRouter.get("/edit/:id", (req, res, next) => {
     const {
         id
     } = req.params;
@@ -64,7 +64,7 @@ router.get("/edit/:id", (req, res, next) => {
         .catch((error) => console.log(error));
 })
 
-router.post("/edit/:id", (req, res, next) => {
+eventRouter.post("/edit/:id", (req, res, next) => {
     const {
         id
     } = req.params.id;
@@ -79,7 +79,7 @@ router.post("/edit/:id", (req, res, next) => {
         .catch((error) => console.log(error));
 })
 
-router.post("/delete/:id", (req, res, next) => {
+eventRouter.post("/delete/:id", (req, res, next) => {
     const {
         id
     } = req.params.id;
@@ -88,4 +88,4 @@ router.post("/delete/:id", (req, res, next) => {
         .catch((err) => console.log(err));
 })
 
-module.exports = router;
+module.exports = eventRouter;
