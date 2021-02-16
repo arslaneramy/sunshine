@@ -16,7 +16,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const eventsRouter = require('./routes/events');
 const authRouter = require("./routes/auth");
-const siteRouter = require("./routes/site")
+const siteRouter = require("./routes/site");
 
 const { isLoggedIn } = require('./utils/middleware');
 const app = express();
