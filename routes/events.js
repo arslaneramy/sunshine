@@ -46,10 +46,10 @@ eventRouter.post("/create", isLoggedIn, (req, res, next) => { // new
 });
 
 
-eventRouter.get("/:id", (req, res, next) => {
-    //res.send("hooooopoooo")
-    res.render('events-views/list')
-});
+// eventRouter.get("/:id", (req, res, next) => {
+//     //res.send("hooooopoooo")
+//     res.render('events-views/list', {event})
+// });
 
 eventRouter.get("/list", (req, res, next) => {
     Event.find()
