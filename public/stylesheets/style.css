@@ -66,21 +66,28 @@ footer {
   bottom: 0;
 }
 
+.allEvents {
+  background-image: url("/images/sunshineWllp.jpg");
+  background-repeat: cover;
+  background-size: 507px;
+  text-align: center;
+  list-style: none;
+}
+
 .container {
-  width: 100px;
+  width: auto;
   margin: 0 auto;
   padding: 65px 0;
-
 }
 
 #list {
   border: 2px solid #eee;
   border-radius: 20px;
   box-sizing: border-box;
-  box-shadow:2px 2px 10px 0 #eee;
+  box-shadow: 2px 2px 10px 0 #eee;
   margin: 50px 5% 0 5%;
-  padding:20px;
-  width:40%;
-  font-size:1.7em;
-  text-align:center;
+  padding: 20px;
+  width: 40%;
+  font-size: 1.7em;
+  text-align: center;
 }
