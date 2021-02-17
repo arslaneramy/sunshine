@@ -1,11 +1,15 @@
+<form action=""> {{!-- add action --}}
 
-<button><a href='/events/edit/${{this._id}}'>Edit</a></button>
-<button><a href='/events/delete/${{this._id}}'>Delete</a></button>
+    <button><a href='/events/edit/${{this._id}}'>Edit</a></button>
+    <button><a href='/events/delete/${{this._id}}'>Delete</a></button>
 
-<div>
-    <h3>{{this.name}}</h3>
-    <p>{{this.description}}</p>
-    <p>{{this.location}}</p>
-    <p>{{this.picture}}</p>
-    <p>{{this.email}}</p>
-</div>
+    <div>
+        <h3>{{this.name}}</h3>
+        <p>{{this.description}}</p>
+        <p>{{this.location}}</p>
+        <p>{{this.picture}}</p>
+        <p>{{this.email}}</p>
+    </div>
+
+
+</form>

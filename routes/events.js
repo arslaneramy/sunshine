@@ -46,7 +46,7 @@ eventRouter.post("/create", isLoggedIn, (req, res, next) => { // new
 });
 eventRouter.get("/:id", (req, res, next) => {
     //res.send("hooooopoooo")
-    res.render('events-views/details-event')
+    res.render('events-views/list')
 });
 eventRouter.post('/:eventId/edit', isLoggedIn, (req, res, next) => {
     const eventId = req.params.eventId;
