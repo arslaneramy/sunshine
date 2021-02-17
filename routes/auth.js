@@ -44,7 +44,6 @@ authRouter.get("/signup", async (req, res, next) => {
                 })
                 
                     
-                    req.session.user = user._id;
                     res.redirect('/');
                 }
                 catch(error) {
