@@ -45,6 +45,15 @@ eventRouter.post("/create", isLoggedIn, (req, res, next) => { // new
           });
 });
 
+<<<<<<< HEAD
+=======
+
+// eventRouter.get("/:id", (req, res, next) => {
+//     //res.send("hooooopoooo")
+//     res.render('events-views/list', {event})
+// });
+
+>>>>>>> 3a540a883c7a2446d75bf091ab6ae16deda8e7a6
 eventRouter.get("/list", (req, res, next) => {
     Event.find()
     .then(event => {
