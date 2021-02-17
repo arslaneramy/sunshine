@@ -1,8 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 728px; /* Resizes the container to 728px for large screens */
+    margin: 0 auto;
+  }
+}
+
+* {
+  font-family: "Roboto Mono", monospace;
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("/images/wallp.jpg");
+  background-size: cover;
+  max-width: 100%;
+  /* background-repeat: no-repeat; */
+  text-align: center;
+}
+
+nav {
+  margin-right: 80px;
+  font-size: 40px;
+  display: fixed;
+  flex-direction: row;
 }
 
 a {
-  color: #00B7FF;
+  text-shadow: 3px 3px rgb(221, 155, 31);
+  list-style: none;
+  padding: 0 60px;
+}
+
+a:hover {
+  color: rgb(221, 155, 31);
+  opacity: 0.7;
+  text-shadow: 3px 3px black;
+}
+
+#logo {
+  width: 10%;
+  height: auto;
+}
+
+/* button label {
+  text-shadow: 1px 1px black;
+  border-radius: 3px;
+  border: 2px solid black;
+} */
+
+h3 {
+  position: relative;
+  margin-top: 150px;
+  text-align: center;
+  text-shadow: black;
+  /* border-style: solid;
+  border: 2px solid black; */
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
 }

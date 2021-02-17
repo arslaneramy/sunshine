@@ -44,7 +44,6 @@ authRouter.get("/signup", async (req, res, next) => {
                 })
                 
                     
-                    
                     res.redirect('/');
                 }
                 catch(error) {

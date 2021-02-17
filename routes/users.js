@@ -5,15 +5,22 @@ const uploader = require("./../file-uploader");//require to upload the files
 
 
 /* GET users listing. */
-usersRouter.get('/user/:id', function(req, res, next) {
-  const userId = req.params.id;
+usersRouter.get('/profile', (req, res, next) => {
+  const userId = req.session.user;
+  let userData;
+
   User.findById(userId)
   .then(
-    userRes => {
-      res.render( "/user", {userRes} );
+    user => {
+      userData = user
+      res.render( "profile/user", {user: userData} );// <-- call by name
     }
   )
+  .catch(err => {
+    next(err);
+  })
 });
+
 
 // User.findById(userId) //check userID
 //   .populate()
@@ -28,6 +35,7 @@ usersRouter.get('/user/:id', function(req, res, next) {
 //       return ;
 //     })
 // })
+
 
 
 usersRouter.get("/profile", (req, res, next) => {
@@ -51,7 +59,7 @@ usersRouter.post("/avatar-upload", uploader.single("photo"), (req, res, next) =>
 });
 
 //check edit route
-usersRouter.get('/edit', (req, res, next) => {
+usersRouter.get('/profile/edit', (req, res, next) => {
   const id = req.session.user;
   let userData;
 
@@ -59,7 +67,7 @@ usersRouter.get('/edit', (req, res, next) => {
     .then(document => {
       userData = document;
       console.log(userData);
-      res.render('user/edit', { userData });
+      res.render('profile/edit', { userData });
     })
     .catch(err =>{
       next(err);
@@ -79,7 +87,7 @@ usersRouter.post("/edit", uploader.single("photo"), (req, res, next) =>{
 
   User.findByIdAndUpdate(id, user)
     .then(() => {
-      res.redirect("profile");
+      res.redirect("/profile");
     })
     .catch(err => {
       next(err);
