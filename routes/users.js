@@ -3,7 +3,6 @@ const usersRouter = express.Router();
 const User = require("../models/user-model");
 const uploader = require("./../file-uploader");//require to upload the files
 
-
 /* GET users listing. */
 usersRouter.get('/user/:id', function(req, res, next) {
   const userId = req.params.id;
@@ -29,12 +28,10 @@ usersRouter.get('/user/:id', function(req, res, next) {
 //     })
 // })
 
-
 usersRouter.get("/profile", (req, res, next) => {
   const userId = req.session.user;
   let
 })
-
 
 //upload profile picture
           //check avatar-upload
@@ -85,8 +82,5 @@ usersRouter.post("/edit", uploader.single("photo"), (req, res, next) =>{
       next(err);
     });
 });
-
-
-
 
 module.exports = usersRouter;
