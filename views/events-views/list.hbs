@@ -1,6 +1,14 @@
-<h2>All events</h2>
+{{!--<h2>All events</h2>--}}
+
+{{!--            DON'T DELETE             --}}
+
+{{#if data.user}}
+<button id="create"><a href='/events/create'>Create event</a></button>
+{{/if}}
+
 <div class="allEvents">
-    {{#each event}}
+  {{!-- {{#each event}} --}}
+  {{#each data.eventData}}
   {{!-- <div class="container"> --}}
     <article id="list">
       <p>{{this.name}}</p>
@@ -9,6 +17,7 @@
       <p>{{this.activity}}</p>
       <p><img href="{{this.image}}" /></p>
     </article>
-  {{!-- </div> --}}
+    {{!--
+  </div> --}}
   {{/each}}
 </div>

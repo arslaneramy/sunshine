@@ -29,8 +29,6 @@ const eventSchema = new Schema({
 By adding this we are asking mongoose to use $type for interpreting the type of a key instead of the default keyword type
 */
 
-
-
 const Event = mongoose.model("Event", eventSchema);
 
 module.exports = Event;

@@ -14,7 +14,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const eventsRouter = require('./routes/events');
+const eventRouter = require('./routes/events');
 const authRouter = require("./routes/auth");
 const siteRouter = require("./routes/site");
 
@@ -70,7 +70,7 @@ app.use("/", indexRouter);
 // app.use("/profile", )
 
 app.use("/profile", usersRouter);
-app.use("/events", eventsRouter);   
+app.use("/events", eventRouter);   
 app.use("/auth", authRouter);
 
 // helper middleware (commented)
