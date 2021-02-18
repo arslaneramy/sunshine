@@ -1,11 +1,11 @@
 const express = require('express');
 const usersRouter = express.Router();
 const User = require("../models/user-model");
-const uploader = require("./../file-uploader");//require to upload the files
+const uploader = require("../cloudinary.config");//require to upload the files
 
 /* GET users listing. */
-usersRouter.get('/profile', (req, res, next) => {
-  const userId = req.session.user;
+usersRouter.get('/user', (req, res, next) => {
+  const userId = req.session.currentUser;
   let userData;
 
   User.findById(userId)
@@ -17,37 +17,41 @@ usersRouter.get('/profile', (req, res, next) => {
   )
   .catch(err => {
     next(err);
-  })
+  });
 });
 
-
-// User.findById(userId) //check userID
-//   .populate()
-// usersRouter.get("/profile", (req, res, next) =>{
+// usersRouter.get("/profile", (req, res, next) => {
 //   const userId = req.session.user;
-//   let = userData;
+//   let userData;
 
 //   User.findById(userId)
-//     //.populate()
-//     .then(user => {
+//     .then( user =>{
 //       userData = user;
-//       return ;
+//       res.render('profile/user', {user: userData});
 //     })
+<<<<<<< HEAD
 // })
 
 usersRouter.get("/profile", (req, res, next) => {
   const userId = req.session.user;
   let
 })
+=======
+//     .catch(err =>{
+//       next(err);
+//     });
+// });
+>>>>>>> develop
 
 //upload profile picture
           //check avatar-upload
-usersRouter.post("/avatar-upload", uploader.single("photo"), (req, res, next) =>{
+usersRouter.post("/user", uploader.single("photo"), (req, res, next) =>{
   const photoUrl = req.file.url;
-
-  User.findByIdAndUpdate(req.session.user, { photoUrl })
+  console.log('req.ses.user', req.session.currentUser)
+  User.findByIdAndUpdate(req.session.currentUser, { photoUrl })
     .then(() =>{
-      res.redirect('profile'); //<-- check profile redirect
+      // console.log('dataaaa',)
+      res.redirect('/profile/user' ); //<-- check profile redirect
     })
     .catch(err =>{
       next(err);
@@ -55,8 +59,8 @@ usersRouter.post("/avatar-upload", uploader.single("photo"), (req, res, next) =>
 });
 
 //check edit route
-usersRouter.get('/profile/edit', (req, res, next) => {
-  const id = req.session.user;
+usersRouter.get('/edit', (req, res, next) => {
+  const id = req.session.currentUser;
   let userData;
 
   User.findById(id)
@@ -71,23 +75,54 @@ usersRouter.get('/profile/edit', (req, res, next) => {
 });
 
 usersRouter.post("/edit", uploader.single("photo"), (req, res, next) =>{
-  const id = req.session.user;
+  const id = req.session.currentUser._id;
+
   const user = {
     name: req.body.name,
-    //add a date??
+    email: req.body.email
+  }
+  
+  console.log('its works', req.file)
+  if (req.file && req.file.path) {
+    user.picture = req.file.path;
   }
 
-  if (req.file && req.file.url) {
-    user.photoUrl = req.file.url;
-  }
 
   User.findByIdAndUpdate(id, user)
     .then(() => {
-      res.redirect("/profile");
+      res.redirect("/profile/user");
     })
     .catch(err => {
       next(err);
     });
 });
 
+<<<<<<< HEAD
 module.exports = usersRouter;
+=======
+usersRouter.get('/list', (req, res, next) => {
+  User.find()
+    .then(users =>{
+      res.render ("user/list", {users});
+    })
+    .catch(err =>{
+      next(err);
+    });
+});
+
+usersRouter.get("/:userId", (req, res, next) =>{
+  const userId = req.params.userId;
+  let user;
+  User.findById(userId)
+    .then(doc =>{
+      console.log('userrrrr', user);
+      res.render("profile/user", {user});
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+
+module.exports = usersRouter;
+>>>>>>> develop

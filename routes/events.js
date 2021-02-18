@@ -45,12 +45,21 @@ eventRouter.post("/create", (req, res, next) => { // new
 /*eventRouter.get("/list", (req, res, next) => {
     Event.find()
         .then(event => {
+<<<<<<< HEAD
             console.log(event, 'hihihi')
             res.render("events-views/list", {
                 event
             })
         })
         .catch(error => {
+=======
+            // console.log(event, 'evetttt')
+            res.status(200).redirect(`/events/list`);
+            //            res.status(200).redirect(`/events/${event._id}`);
+
+          })
+          .catch(error => {
+>>>>>>> develop
             next(error);
         });
 });*/
@@ -110,6 +119,13 @@ eventRouter.post("/edit/:id", (req, res, next) => {
 })
 
 module.exports = eventRouter;
+//  <a href="/delete/{{IDGOESHERE}}"
+eventRouter.get("/delete/:id", (req, res, next) => {
+    const { id } = req.params;
+    Event.findByIdAndRemove(id)
+        .then(() => res.redirect('/events/list'))
+        .catch((err) => console.log(err));
+})
 
 // eventRouter.post('/:eventId/edit', isLoggedIn, (req, res, next) => {
 //     const eventId = req.params.eventId;
@@ -214,3 +230,6 @@ module.exports = eventRouter;
 //             res.redirect('/events');
 //         });
 // });
+// })
+
+module.exports = eventRouter;

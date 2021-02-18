@@ -28,12 +28,15 @@
 {{!--<div class="allEvents">
   {{#each event}}
   <div class="container">
+  {{#each event}}
+    {{!-- <div class="container"> --}}
     <article id="list">
       <p>{{this.name}}</p>
       <p>{{this.description}}</p>
       <p>{{this.location}}</p>
       <p>{{this.activity}}</p>
       <p><img href="{{this.image}}" /></p>
+<<<<<<< HEAD
       {{#if data.user}}
       <button><a href='/events/edit/{{this._id}}'>Edit event</a></button>
       {{/if}}
@@ -41,3 +44,11 @@
   </div>
   {{/each}}
 </div>--}}
+=======
+      <a href="/events/delete/{{this._id}}"><p>Delete</p></a>
+    </article>
+    {{!-- </div> --}}
+  {{/each}}
+</div>
+
+>>>>>>> develop

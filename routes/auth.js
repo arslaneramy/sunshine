@@ -96,7 +96,7 @@ authRouter.post('/login', async (req, res, next) => {
            
 // logout 
 
-authRouter.get('/logout', (req, res, next) => {
+authRouter.post('/logout', (req, res, next) => {
     req.session.destroy(function (err) {
         if (err) {
             next(err)
