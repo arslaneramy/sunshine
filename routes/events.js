@@ -84,6 +84,31 @@ eventRouter.get("/:id", (req, res, next) => {
     res.render('events-views/list')
 });
 
+eventRouter.get("/edit/:id", (req, res, next) => {
+    const {
+        id
+    } = req.params;
+
+    Event.findById(id)
+        .then((event) => res.render('events-views/edit', { event }))
+        .catch((error) => console.log(error));
+})
+
+eventRouter.post("/edit/:id", (req, res, next) => {
+    const {
+        id
+    } = req.params.id;
+    const {
+        data
+    } = req.body;
+
+    Event.findByIdAndUpdate(id, data)
+        .then((event) => res.render('events-views/details-event', {
+            event
+        }))
+        .catch((error) => console.log(error));
+})
+
 module.exports = eventRouter;
 
 // eventRouter.post('/:eventId/edit', isLoggedIn, (req, res, next) => {
