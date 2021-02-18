@@ -6,7 +6,7 @@ const uploader = require("../cloudinary.config");//require to upload the files
 
 /* GET users listing. */
 usersRouter.get('/user', (req, res, next) => {
-  const userId = req.session.user;
+  const userId = req.session.currentUser;
   let userData;
 
   User.findById(userId)
@@ -18,7 +18,7 @@ usersRouter.get('/user', (req, res, next) => {
   )
   .catch(err => {
     next(err);
-  })
+  });
 });
 
 // usersRouter.get("/profile", (req, res, next) => {
@@ -40,11 +40,11 @@ usersRouter.get('/user', (req, res, next) => {
           //check avatar-upload
 usersRouter.post("/user", uploader.single("photo"), (req, res, next) =>{
   const photoUrl = req.file.url;
-  console.log('req.ses.user',req.session.userId)
-  User.findByIdAndUpdate(req.session.userId, { photoUrl })
-    .then(data =>{
-      console.log('data',data)
-      res.redirect('/profile/user'); //<-- check profile redirect
+  console.log('req.ses.user', req.session.currentUser)
+  User.findByIdAndUpdate(req.session.currentUser, { photoUrl })
+    .then(() =>{
+      // console.log('dataaaa',)
+      res.redirect('/profile/user' ); //<-- check profile redirect
     })
     .catch(err =>{
       next(err);
@@ -53,14 +53,14 @@ usersRouter.post("/user", uploader.single("photo"), (req, res, next) =>{
 
 //check edit route
 usersRouter.get('/edit', (req, res, next) => {
-  const id = req.session.user;
+  const id = req.session.currentUser;
   let userData;
 
   User.findById(id)
     .then(document => {
       userData = document;
       console.log(userData);
-      res.render('/profile/edit', { userData });
+      res.render('profile/edit', { userData });
     })
     .catch(err =>{
       next(err);
@@ -68,7 +68,7 @@ usersRouter.get('/edit', (req, res, next) => {
 });
 
 usersRouter.post("/edit", uploader.single("photo"), (req, res, next) =>{
-  const id = req.session.user;
+  const id = req.session.currentUser;
   const user = {
     name: req.body.name,
     //add a date??
