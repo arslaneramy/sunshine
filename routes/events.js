@@ -46,7 +46,9 @@ eventRouter.post("/create", isLoggedIn, (req, res, next) => { // new
         })
         .then(event => {
             // console.log(event, 'evetttt')
-            res.status(200).redirect(`/events/${event._id}`);
+            res.status(200).redirect(`/events-views/list`);
+            //            res.status(200).redirect(`/events/${event._id}`);
+
           })
           .catch(error => {
             next(error);

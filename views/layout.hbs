@@ -15,12 +15,13 @@
         <a href="/"> <img href="/auth/login" id="logo" src="/images/logo.png" > </a>  
         {{#if user}}
           <a href="/profile/user"> My Profile </a>
-          <a href="/events-views/list"> Events</a>
+          <a href="/events-views/list">See Events</a>
           <a href="/events/create"> Create Event </a>
           <form action="/auth/logout" method="POST">
             <button> Sign Out </button>
-          </form>  
+          </form>
         {{else}}
+          <a href="/profile/user"> My Profile </a>
           <a href="/events/list"> See Events </a>
           <a href="/auth/login"> Sign In </a>
           {{!-- fix signin --}}
