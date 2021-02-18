@@ -68,19 +68,22 @@ usersRouter.get('/edit', (req, res, next) => {
 });
 
 usersRouter.post("/edit", uploader.single("photo"), (req, res, next) =>{
-  const id = req.session.currentUser;
+  const id = req.session.currentUser._id;
+
   const user = {
     name: req.body.name,
-    //add a date??
+    email: req.body.email
+  }
+  
+  console.log('its works', req.file)
+  if (req.file && req.file.path) {
+    user.picture = req.file.path;
   }
 
-  if (req.file && req.file.url) {
-    user.photoUrl = req.file.url;
-  }
 
   User.findByIdAndUpdate(id, user)
     .then(() => {
-      res.redirect("/profile/edit");
+      res.redirect("/profile/user");
     })
     .catch(err => {
       next(err);
