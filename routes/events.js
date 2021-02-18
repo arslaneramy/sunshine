@@ -5,6 +5,8 @@ const Event = require('./../models/event-model');
 const {
     isLoggedIn
 } = require('./../utils/middleware');
+
+
 eventRouter.get("/", (req, res, next) => {
     Event.find()
         .then((allEvents) => {
@@ -17,27 +19,33 @@ eventRouter.get("/", (req, res, next) => {
             res.redirect('/events');
         });
 });
-// we neeed a event view, there will be a button to create an event, and when clicked, we would go to the view whith the form to create the new event
+
+// we neeed a event view, there will be a button to create an event, and when clicked...
+//..., we would go to the view whith the form to create the new event
 eventRouter.get("/create", isLoggedIn, (req, res, next) => {
     res.render('events-views/new-event')
 });
+
 eventRouter.post("/create", isLoggedIn, (req, res, next) => { // new
     const {
         name,
         description,
         location,
         picture,
-        email
+        email,
+        activity,
     } = req.body;
+    
     Event.create({
-            name,
-            description,
-            location,
-            picture,
-            email
+        name,
+        description,
+        location,
+        picture,
+        email,
+        activity,
         })
         .then(event => {
-            console.log(event, 'evetttt')
+            // console.log(event, 'evetttt')
             res.status(200).redirect(`/events/${event._id}`);
           })
           .catch(error => {
@@ -77,7 +85,8 @@ eventRouter.get("/:id", (req, res, next) => {
 //         description,
 //         location,
 //         picture,
-//         email
+//         email,
+//         activity,
 //     } = req.body;
 //     let event;
 //     //console.log(req.body);
