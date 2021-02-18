@@ -14,9 +14,9 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const eventRouter = require('./routes/events');
+const eventsRouter = require('./routes/events');
 const authRouter = require("./routes/auth");
-const siteRouter = require("./routes/site")
+const siteRouter = require("./routes/site");
 
 const { isLoggedIn } = require('./utils/middleware');
 const app = express();
@@ -67,9 +67,10 @@ app.use(session({
 // MAIN ROUTE
 app.use("/", indexRouter);
 
+// app.use("/profile", )
 
-app.use("/users", usersRouter);
-app.use("/events", eventRouter);
+app.use("/profile", usersRouter);
+app.use("/events", eventsRouter);   
 app.use("/auth", authRouter);
 
 // helper middleware (commented)
@@ -79,7 +80,6 @@ app.use("/auth", authRouter);
 //   } else {
 //     res.redirect('/auth/login');
 //   }
-
 // }
 
 
@@ -87,10 +87,10 @@ app.use("/auth", authRouter);
 app.use("/", siteRouter);
 
 //ERROR HANDLERS
-//catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
+// catch 404 and forward to error handler
+// app.use(function (req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function (err, req, res, next) {
