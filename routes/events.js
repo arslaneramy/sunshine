@@ -78,7 +78,13 @@ eventRouter.get("/:id", (req, res, next) => {
     res.render('events-views/list')
 });
 
-
+//  <a href="/delete/{{IDGOESHERE}}"
+eventRouter.get("/delete/:id", (req, res, next) => {
+    const { id } = req.params;
+    Event.findByIdAndRemove(id)
+        .then(() => res.redirect('/events/list'))
+        .catch((err) => console.log(err));
+})
 
 // eventRouter.post('/:eventId/edit', isLoggedIn, (req, res, next) => {
 //     const eventId = req.params.eventId;
