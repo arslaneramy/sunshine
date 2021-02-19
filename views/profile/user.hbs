@@ -3,7 +3,7 @@
   <div class="">
     <div class="">
       {{#if user.picture}}
-        <img src="{{user.picture}}" alt="">
+        <img class="imgProfile" src="{{user.picture}}" alt="">
       {{else}}
     
         {{!-- <img src="images/defaultProfilePicture.jpg" alt=""> --}}
@@ -15,7 +15,7 @@
         <input type="text" name="email" value={{user.email}}>
         
         <label for="picture-input"> Picture </label>
-        <input required type="file" id="picture-input" name="photo">
+        <input type="file" id="picture-input" name="photo">
         <button type="submit"> Update </button> 
       </form>
 

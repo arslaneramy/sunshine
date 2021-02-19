@@ -1,11 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
 
-@media (min-width: 768px) {
-  .container {
-    max-width: 728px; /* Resizes the container to 728px for large screens */
-    margin: 0 auto;
-  }
-}
+/* @media screen and (max-width: 800px) { */
 
 * {
   font-family: "Roboto Mono", monospace;
@@ -17,7 +12,9 @@
 body {
   background-image: url("/images/wallp.jpg");
   background-size: cover;
-  width: 100%;
+  /* background-repeat: no-repeat; */
+  width: auto;
+  height: auto;
   /* background-repeat: no-repeat; */
   text-align: center;
 }
@@ -72,10 +69,17 @@ h3 {
   border: 2px solid black; */
 }
 
+.user-media {
+  display: flex;
+  /* text-align: center;
+  align-items: center; */
+  text-shadow: 1px 1px black;
+}
+
 .allEvents {
-  background-image: url("/images/sunshineWllp.jpg");
+  /* background-image: url("/images/sunshineWllp.jpg");
   background-repeat: cover;
-  background-size: 100%;
+  background-size: 100%; */
   text-align: center;
   list-style: none;
   display: flex;
@@ -86,6 +90,12 @@ h3 {
 } */
 
 #list {
+  text-shadow: 1px 1px black;
+  background-color: coral;
+  background-image: url(/images/sunshineWllp.jpg);
+  background-size: 100% 100%;
+  /* width: 100%;
+  height: auto; */
   /* border: ; */
   border: 5px transparent #eee;
   border-radius: 20px;
@@ -100,3 +110,17 @@ h3 {
   text-align: center;
   flex-wrap: wrap;
 }
+/*
+responsive:
+@media screen and(max-width: 600px) {
+  body {
+    background-color: white;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    background-color: blue;
+  }
+}
+*/

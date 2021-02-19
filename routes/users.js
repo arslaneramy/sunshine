@@ -2,10 +2,12 @@ const express = require('express');
 const usersRouter = express.Router();
 const User = require("../models/user-model");
 const uploader = require("../cloudinary.config");//require to upload the files
-
+const {
+  isLoggedIn
+} = require('./../utils/middleware');
 
 /* GET users listing. */
-usersRouter.get('/user', (req, res, next) => {
+usersRouter.get('/user', isLoggedIn, (req, res, next) => {
   const userId = req.session.currentUser;
   let userData;
 

@@ -43,6 +43,7 @@ eventRouter.post("/create", isLoggedIn, (req, res, next) => { // new
         picture,
         email,
         activity,
+        host:req.session.currentUser._id,
         })
         .then(event => {
             // console.log(event, 'evetttt')
@@ -79,12 +80,12 @@ eventRouter.get("/:id", (req, res, next) => {
 });
 
 //  <a href="/delete/{{IDGOESHERE}}"
-eventRouter.get("/delete/:id", (req, res, next) => {
+eventRouter.get("/delete/:id",isLoggedIn, (req, res, next) => {
     const { id } = req.params;
-    Event.findByIdAndRemove(id)
-        .then(() => res.redirect('/events/list'))
-        .catch((err) => console.log(err));
-})
+        Event.findByIdAndRemove(id)
+            .then(() => res.redirect('/events/list'))
+            .catch((err) => console.log(err));
+});
 
 // eventRouter.post('/:eventId/edit', isLoggedIn, (req, res, next) => {
 //     const eventId = req.params.eventId;
