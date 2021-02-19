@@ -44,13 +44,21 @@ eventRouter.post("/create", (req, res, next) => { // new
 eventRouter.get("/list", (req, res, next) => {
     Event.find()
         .then(event => {
-            //console.log(req.session.currentUser);
+           
+           let matchId = false;
+         /* event.some(data => {
+              if(data.host[0] === req.session.currentUser._id){
+              console.log(data.host[0] === req.session.currentUser._id)
+                matchId = !matchId;
+              } else {
+                  matchId = false;
+              }})*/
             const data = {
                 eventData: event,
                 user: req.session.currentUser
             }
-            console.log('checking the user', data.user);
-            console.log(event, 'hihihi')
+            console.log('checking the user', matchId);
+           // console.log(event, 'hihihi')
             res.render("events-views/list", {
                 data
             })
@@ -71,11 +79,11 @@ eventRouter.get("/edit/:id", (req, res, next) => {
         .catch((error) => console.log(error));
 })
 
-eventRouter.post("/:id", (req, res, next) => {
+eventRouter.post("/edit/:id", (req, res, next) => {
     console.log("what", req.params)
     const data = req.body;
-
-    Event.findByIdAndUpdate({ _id: req.params.id }, data )
+    const { id } = req.params
+    Event.findByIdAndUpdate(id, data )
         .then(() => res.redirect('/events/list'))
         .catch((error) => console.log(error));
 })
@@ -83,7 +91,9 @@ eventRouter.post("/:id", (req, res, next) => {
 eventRouter.get("/delete/:id", (req, res, next) => {
     const { id } = req.params;
     Event.findByIdAndRemove(id)
-        .then(() => res.redirect('/events/list'))
+        .then(() => {
+            res.redirect('/events/list')
+        })
         .catch((err) => console.log(err));
 })
 

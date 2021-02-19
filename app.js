@@ -21,6 +21,8 @@ const siteRouter = require("./routes/site");
 const { isLoggedIn } = require('./utils/middleware');
 const app = express();
 
+//var exphbs = require('express-handlebars');
+
 // function isLoggedIn(req, res, next) {
 //   if (req.session.currentUser){
 //     next();
@@ -43,9 +45,20 @@ mongoose
 // const MONGODB_URI = process.env.MONGODB_URI;
 
 // view engine setup
+/*var hbsHelpers = exphbs.create({
+  helpers: require("./utils/helperFunction").helpers,
+  defaultLayout: 'layout',
+  extname: '.hbs'
+});*/
+
+//app.engine('.hbs', hbsHelpers.engine);
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
+/*Handlebars.registerHelper("xif", function (expression, options) {
+  return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+});*/
 
 app.use(logger("dev"));
 app.use(express.json());
