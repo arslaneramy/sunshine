@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap");
 
 /* @media screen and (max-width: 800px) { */
 
@@ -46,6 +46,10 @@ a:hover {
   color: rgb(221, 155, 31);
   opacity: 0.7;
   text-shadow: 3px 3px black;
+}
+
+select {
+  background-color: orange;
 }
 
 #logo {
