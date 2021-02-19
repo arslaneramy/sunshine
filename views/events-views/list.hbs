@@ -14,10 +14,12 @@
     <p>{{this.location}}</p>
     <p>{{this.activity}}</p>
     <p><img href={{this.image}} /></p>
-    {{#if "data.user === this.host[0]"}}
     <a href="/events/delete/{{this._id}}"><p>Delete</p></a>
     <a href='/events/edit/{{this._id}}'>Edit event</a>
-    {{/if}}
   </article>
   {{/each}}
 </div>
+
+    {{!--{{#xif "data.user._id === this.host.[0]._id"}}
+        {{/xif}} --}}
+
