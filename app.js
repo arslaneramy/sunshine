@@ -14,12 +14,14 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const eventsRouter = require('./routes/events');
+const eventRouter = require('./routes/events');
 const authRouter = require("./routes/auth");
 const siteRouter = require("./routes/site");
 
 const { isLoggedIn } = require('./utils/middleware');
 const app = express();
+
+//var exphbs = require('express-handlebars');
 
 // function isLoggedIn(req, res, next) {
 //   if (req.session.currentUser){
@@ -43,9 +45,20 @@ mongoose
 // const MONGODB_URI = process.env.MONGODB_URI;
 
 // view engine setup
+/*var hbsHelpers = exphbs.create({
+  helpers: require("./utils/helperFunction").helpers,
+  defaultLayout: 'layout',
+  extname: '.hbs'
+});*/
+
+//app.engine('.hbs', hbsHelpers.engine);
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
+/*Handlebars.registerHelper("xif", function (expression, options) {
+  return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+});*/
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -70,7 +83,7 @@ app.use("/", indexRouter);
 // app.use("/profile", )
 
 app.use("/profile", usersRouter);
-app.use("/events", eventsRouter);   
+app.use("/events", eventRouter);   
 app.use("/auth", authRouter);
 
 // helper middleware (commented)

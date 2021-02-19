@@ -1,0 +1,16 @@
+
+{{!-- list.hbs  --}}
+
+<button><a href='/events/create'>Create event</a></button>
+
+<ul>
+    {{#each allEvents}}
+    <li>
+        <a href="/events/details.event"><h3>{{this.name}}</h3></a>
+        <a href="/events/details.event"><p>{{this.description}}</p></a>
+        <a href="/events/details.event"><p>{{this.location}}</p></a>
+        <a href="/events/details.event"><p>{{this.picture}}</p></a>
+        <a href="/events/details.event"><p>{{this.email}}</p></a>
+    </li>
+    {{/each}}
+</ul>
