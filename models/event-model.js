@@ -14,8 +14,7 @@ const eventSchema = new Schema({
         "food",
         "party",
         "movies",
-        "outdoor",
-        
+        "outdoor", 
     ],
 
     host: [{

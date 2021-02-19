@@ -29,19 +29,16 @@ usersRouter.get('/user', (req, res, next) => {
 //       userData = user;
 //       res.render('profile/user', {user: userData});
 //     })
-<<<<<<< HEAD
 // })
 
 usersRouter.get("/profile", (req, res, next) => {
   const userId = req.session.user;
   let
 })
-=======
 //     .catch(err =>{
 //       next(err);
 //     });
 // });
->>>>>>> develop
 
 //upload profile picture
           //check avatar-upload
@@ -97,9 +94,6 @@ usersRouter.post("/edit", uploader.single("photo"), (req, res, next) =>{
     });
 });
 
-<<<<<<< HEAD
-module.exports = usersRouter;
-=======
 usersRouter.get('/list', (req, res, next) => {
   User.find()
     .then(users =>{
@@ -123,6 +117,4 @@ usersRouter.get("/:userId", (req, res, next) =>{
     });
 });
 
-
 module.exports = usersRouter;
->>>>>>> develop

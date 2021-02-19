@@ -1,14 +1,21 @@
 
-<button><a href='/events/edit/${{this._id}}'>Edit</a></button>
-<button><a href='/events/delete/${{this._id}}'>Delete</a></button>
+<form action="events/{{event._id}}" method="POST">
 
-<div>
-  <h3>{{this.name}}</h3>
-  <p>{{this.description}}</p>
-  <p>{{this.location}}</p>
-  {{!-- <p>{{this.picture}}</p>
-  <p>{{this.email}}</p> --}}
-</div>
+  <label for='name'>Name:</label>
+  <input type='text' id="name" value="{{name}}" name='name'>
+
+  <label for='description'>Description:</label>
+  <input type='text' id="description" value="{{description}}" name='description'>
+
+  <label for='location'>Location:</label>
+  <input type='text' id="location" value="{{location}}" name='location'>
+
+  {{!--<label for='picture'>Picture:</label>
+  <input type='text' id="picture" value="{{picture}}" name='picture'>--}}
+
+  <button type='submit'>Submit</button>
+
+</form>
 
 
 
