@@ -14,8 +14,7 @@ const eventSchema = new Schema({
         "food",
         "party",
         "movies",
-        "outdoor",
-        
+        "outdoor", 
     ],
 
     host: [{
@@ -28,8 +27,6 @@ const eventSchema = new Schema({
 { typeKey: '$type' }
 By adding this we are asking mongoose to use $type for interpreting the type of a key instead of the default keyword type
 */
-
-
 
 const Event = mongoose.model("Event", eventSchema);
 

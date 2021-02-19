@@ -2,9 +2,6 @@ const express = require('express');
 const usersRouter = express.Router();
 const User = require("../models/user-model");
 const uploader = require("../cloudinary.config");//require to upload the files
-const {
-    isLoggedIn
-} = require('./../utils/middleware');
 
 /* GET users listing. */
 usersRouter.get('/user', isLoggedIn, (req, res, next) => {
@@ -32,11 +29,16 @@ usersRouter.get('/user', isLoggedIn, (req, res, next) => {
 //       userData = user;
 //       res.render('profile/user', {user: userData});
 //     })
+// })
+
+usersRouter.get("/profile", (req, res, next) => {
+  const userId = req.session.user;
+  let
+})
 //     .catch(err =>{
 //       next(err);
 //     });
 // });
-
 
 //upload profile picture
           //check avatar-upload
@@ -114,6 +116,5 @@ usersRouter.get("/:userId", (req, res, next) =>{
       next(err);
     });
 });
-
 
 module.exports = usersRouter;
