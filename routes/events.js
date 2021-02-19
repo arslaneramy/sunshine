@@ -62,7 +62,7 @@ eventRouter.get("/list", (req, res, next) => {
     });
 });
 
-eventRouter.get("/edit/:id", (req, res, next) => {
+eventRouter.get("/edit/:id", isLoggedIn, (req, res, next) => {
   const id = req.params.id;
 
   Event.findById(id)
@@ -73,7 +73,7 @@ eventRouter.get("/edit/:id", (req, res, next) => {
     .catch((error) => console.log(error));
 });
 
-eventRouter.post("/edit/:id", (req, res, next) => {
+eventRouter.post("/edit/:id", isLoggedIn, (req, res, next) => {
   console.log("what", req.params);
   const data = req.body;
   const { id } = req.params;
